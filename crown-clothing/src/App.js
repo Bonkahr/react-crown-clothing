@@ -1,9 +1,9 @@
+import './categories.styles.scss';
+
+import Categories from './components/categories/categories.component';
+
 const App = () => {
-  return (
-    <div className='App'>
-      <h1>Clothinggs.....</h1>
-    </div>
-  );
+  return <Categories />;
 };
 
 export default App;
