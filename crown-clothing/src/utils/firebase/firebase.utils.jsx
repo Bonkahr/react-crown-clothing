@@ -2,14 +2,9 @@
 import { initializeApp } from 'firebase/app';
 
 // TODO: Add SDKs for Firebase products that you want to use
-import {
-  getAuth,
-  signInWithRedirect,
-  signInWithPopup,
-  GoogleAuthProvider,
-} from 'firebase/auth';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
-import { getFirestore, Doc, setDoc, getDoc, doc } from 'firebase/firestore';
+import { getFirestore, setDoc, getDoc, doc } from 'firebase/firestore';
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,17 +19,19 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({
+// setting up google signin provider -> others are Facebook, Twitter, Microsoft, Apple, Github etc.
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
   prompt: 'select_account',
 });
 
 export const auth = getAuth();
 
 // sign-in with google pop up method
-export const signinWithGooglePopup = () => signInWithPopup(auth, provider);
+export const signinWithGooglePopup = () =>
+  signInWithPopup(auth, googleProvider);
 
 // firestore database initialization
 export const db = getFirestore();
