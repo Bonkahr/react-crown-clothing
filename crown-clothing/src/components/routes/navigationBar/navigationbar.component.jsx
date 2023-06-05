@@ -24,7 +24,7 @@ const NavigationBar = () => {
 
           <Link
             className='nav-link'
-            to='sign-in'
+            to='auth'
           >
             SignIn
           </Link>

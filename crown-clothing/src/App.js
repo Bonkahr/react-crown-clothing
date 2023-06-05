@@ -4,7 +4,7 @@ import './categories.styles.scss';
 
 import Home from './components/routes/home/home.component';
 import NavigationBar from './components/routes/navigationBar/navigationbar.component';
-import SignIn from './components/routes/sign-in/sign-in.component';
+import Authentication from './components/routes/authentication/authentication.component';
 
 const App = () => {
   return (
@@ -19,8 +19,8 @@ const App = () => {
         />
 
         <Route
-          path='sign-in'
-          element={<SignIn />}
+          path='auth'
+          element={<Authentication />}
         />
       </Route>
     </Routes>
