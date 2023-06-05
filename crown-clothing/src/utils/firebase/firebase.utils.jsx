@@ -2,7 +2,12 @@
 import { initializeApp } from 'firebase/app';
 
 // TODO: Add SDKs for Firebase products that you want to use
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth';
 
 import { getFirestore, setDoc, getDoc, doc } from 'firebase/firestore';
 
@@ -37,7 +42,12 @@ export const signinWithGooglePopup = () =>
 export const db = getFirestore();
 
 // User creation function.
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additionalInformation = {}
+) => {
+  // if (!userAuth) return;
+
   const userDocRef = doc(db, 'users', userAuth.uid);
 
   // console.log(userDocRef);
@@ -57,11 +67,17 @@ export const createUserDocumentFromAuth = async (userAuth) => {
         email,
         phoneNumber,
         createdAt,
+        ...additionalInformation,
       });
     } catch (error) {
-      console.log('Erroe creating the user', error);
+      console.log('Error creating the user', error);
     }
   }
 
   return userDocRef;
+};
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await createUserWithEmailAndPassword(auth, email, password);
 };

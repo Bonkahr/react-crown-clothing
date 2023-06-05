@@ -4,6 +4,7 @@ import {
 } from '../../../utils/firebase/firebase.utils';
 
 import SignupForm from '../../signup-form/signup-form.component';
+import Button from '../../button/button.component';
 
 const SignIn = () => {
   const logGoogleUser = async () => {
